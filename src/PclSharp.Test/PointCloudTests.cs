@@ -1,12 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Numerics;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PclSharp.IO;
 using PclSharp.Struct;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using static PclSharp.Test.TestData;
-using PclSharp.IO;
 
 namespace PclSharp.Test
 {
@@ -127,8 +124,11 @@ namespace PclSharp.Test
         [TestMethod]
         public void TestDownsample()
         {
+            int result = 0;
+
             using (var reader = new PCDReader())
-                reader.Read(DataPath("tutorials/table_scene_mug_stereo_textured.pcd"), cloud);
+                result = reader.Read(DataPath("tutorials/table_scene_mug_stereo_textured.pcd"), cloud);
+
 
             using (var down = new PointCloudOfXYZ())
             {
